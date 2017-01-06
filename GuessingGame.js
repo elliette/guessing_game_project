@@ -132,6 +132,27 @@ $(document).ready(function() {
         $('#subtitle').text('Enter a number between 1 and 100:')
         $('.guess').text('?');
         $('#hint, #submit').prop("disabled", false);
+        $('body').css("background", "url(background.jpg)");
+        $('body').css({
+            'background-repeat': 'no-repeat',
+            'background-attachment': 'fixed',
+            'background-position': 'center',
+            'margin-bottom': '20px'
+        })
+
+
+
+
+        $('#headers').css({
+            'color': '#D2E1FF'
+        });
+        $("#app").css({
+            'background': '',
+            'border': '',
+            'border-top': 'none'
+        });
+
+
     })
 
     $('#hint').click(function() {
