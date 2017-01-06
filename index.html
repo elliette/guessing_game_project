@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Guessing Game</title>
+
+    <!-- link to CSS -->
+    <link rel='stylesheet' type='text/css' href='style.css'>
+
+    <!-- link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800|Raleway:200" rel="stylesheet">
+
+    <!-- link to Bootstrap -->
+    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+
+    <!-- link to JQuery Library-->
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+
+    <!-- link to JS file-->
+    <script type="text/javascript" src="GuessingGame.js"></script>
+    
+    <!-- link to icon-->
+    <link rel="icon" href="icon.jpg">
+
+</head>
+
+
+<div id='app' class='center container'>
+
+    <div id='headers'>
+        <h1 id='title'>Guessing Game</h1>
+        <h3 id='subtitle'>Enter a number between 1 and 100:</h3>
+    </div>
+
+    <div id='main'>
+        <div id='input-parent'>
+            <input id='players-input' class='center' placeholder="#" maxlength='3' autofocus=autofocus></input>
+            <button id='submit' class='btn btn-success'>Go</button>
+        </div>
+
+        <div id='guesses'>
+            <ul id='guess-list'>
+                <li class='guess'>?</li>
+                <li class='guess'>?</li>
+                <li class='guess'>?</li>
+                <li class='guess'>?</li>
+                <li class='guess'>?</li>
+            </ul>
+        </div>
+
+        <div id="menu-btns">
+            <button id='reset' class='btn btn-danger'>Reset</button>
+            <button id='hint' class='btn btn-info'>Hint</button>
+        </div>
+    </div>
+</div>
+
+<div id='footer' class='center'>
+    <div class='row'>
+
+
+        <div class='col-sm-4'>
+            <img src='grace_hopper_academy.png'></img>
+        </div>
+
+        <div class='col-sm-4'>
+            <!-- holder -->
+        </div>
+
+        <div class='col-sm-4'>
+            <h4 id="my-name">Grace Hopper Academy Foundations Project</h4>
+            <p> ~By Elliott Brooks~ </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>
