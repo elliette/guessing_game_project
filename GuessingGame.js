@@ -1,7 +1,5 @@
 var generateWinningNumber = function() {
-    var winningNum = Math.floor(Math.random() * 100);
-    console.log(winningNum);
-    return winningNum;
+    return Math.floor(Math.random() * 100);
 };
 
 function newGame() {
@@ -43,13 +41,13 @@ Game.prototype = {
     checkGuess: function(num) {
         if (typeof num !== "number" || num < 1 || num > 100 || isNaN(num)) {
             return "Invalid guess.";
+        }  else if (this.pastGuesses.slice(0, this.pastGuesses.length - 1).indexOf(num) > -1) {
+            return "You've already guessed that number.";
         } else {
             this.pastGuesses.push(num);
             $('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
-
-
             if (num === this.winningNumber) {
-                $('#hint, #submit').prop("disabled", true);
+                $('#hint, #submit, #players-input').prop("disabled", true);
                 $('#headers').css({
                     'color': '#091830'
                 });
@@ -64,11 +62,8 @@ Game.prototype = {
                 });
 
                 return "You Win!";
-            } else if (this.pastGuesses.slice(0, this.pastGuesses.length - 1).indexOf(num) > -1) {
-                console.log(this.pastGuesses);
-                return "You have already guessed that number.";
             } else if (this.pastGuesses.length === 5) {
-                $('#hint, #submit').prop("disabled", true);
+                $('#hint, #submit, #players-input').prop("disabled", true);
                 $('#subtitle').text("The winning number was " + this.winningNumber + ". Press reset to play again.");
                 $("body").css({
                     "background": '#091830'
@@ -107,7 +102,6 @@ Game.prototype = {
 
 var submitGuess = function(game) {
     var guess = parseInt($('#players-input').val());
-    console.log(guess);
     $('#players-input').val('');
     var response = game.playersGuessSubmission(guess);
     $('#title').text(response);
