@@ -1,5 +1,5 @@
 var generateWinningNumber = function() {
-    return Math.floor(Math.random() * 100);
+    return Math.floor(Math.random() * 100) + 1;
 };
 
 function newGame() {
