@@ -41,11 +41,11 @@ Game.prototype = {
     checkGuess: function(num) {
         if (typeof num !== "number" || num < 1 || num > 100 || isNaN(num)) {
             return "Invalid guess.";
-        }  else if (this.pastGuesses.slice(0, this.pastGuesses.length).indexOf(num) > -1) {
+        } else if (this.pastGuesses.slice(0, this.pastGuesses.length).indexOf(num) > -1) {
             $('#subtitle').text("You've already guessed that number.");
             return "Hey!";
         } else {
-            this.pastGuesses.push(num); 
+            this.pastGuesses.push(num);
             $('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
             if (num === this.winningNumber) {
                 $('#hint, #submit, #players-input').prop("disabled", true);
@@ -97,9 +97,30 @@ Game.prototype = {
     },
 
     provideHint: function() {
-        return shuffle([this.winningNumber, generateWinningNumber(), generateWinningNumber()]);
+        var hintGiven = false;
+        var winningNum = this.winningNumber; 
+        return function() {
+            if (!hintGiven) {
+                hintGiven = true;
+                var a = generateWinningNumber();
+                if (a === winningNum) {
+                    a = generateWinningNumber();
+                }
+                var b = generateWinningNumber();
+                if (b === winningNum) {
+                    b = generateWinningNumber();
+                }
+                if (a === b) {
+                    a = generateWinningNumber()
+                }
+                return shuffle([winningNum, a, b]);
+            } else if (hintGiven) {
+                return undefined;
+            }
+        }
     }
 }
+
 
 var submitGuess = function(game) {
     var guess = parseInt($('#players-input').val());
@@ -111,6 +132,8 @@ var submitGuess = function(game) {
 
 $(document).ready(function() {
     var game = newGame();
+    var getHint = game.provideHint();
+
     $('#submit').click(function(e) {
         submitGuess(game);
     })
@@ -122,9 +145,13 @@ $(document).ready(function() {
     });
 
     $('#hint').click(function() {
-        var hintArr = game.provideHint();
-        $('#title').text('Hint:');
-        $('#subtitle').text("The winning number is either " + hintArr[0] + ", " + hintArr[1] + " or " + hintArr[2] + ".")
-    })
-
+        var hintArr = getHint(); 
+        if (hintArr === undefined) {
+            $('#title').text("Sorry.");
+            $('#subtitle').text("You are only allowed one hint per game.")
+        } else {
+            $('#title').text('Hint:');
+            $('#subtitle').text("The winning number is either " + hintArr[0] + ", " + hintArr[1] + " or " + hintArr[2] + ".")
+        }
+    });
 });
