@@ -42,7 +42,8 @@ Game.prototype = {
         if (typeof num !== "number" || num < 1 || num > 100 || isNaN(num)) {
             return "Invalid guess.";
         }  else if (this.pastGuesses.slice(0, this.pastGuesses.length).indexOf(num) > -1) {
-            return "You've already guessed that number.";
+            $('#subtitle').text("You've already guessed that number.");
+            return "Hey!";
         } else {
             this.pastGuesses.push(num); 
             $('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
