@@ -53,19 +53,20 @@ img {
   padding: 0;
   text-align: center;
 }
-body {
-    background: url('background.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center; 
-    margin-bottom: 20px; 
-}
 
 #app {
   border-bottom-left-radius: 900px;  
   border-bottom-right-radius: 900px;
   width: 900px;
   height: 450px; 
+}
+
+body {
+    background: url('background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    margin-bottom: 20px; 
 }
 
 #menu-btns {
