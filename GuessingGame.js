@@ -41,10 +41,10 @@ Game.prototype = {
     checkGuess: function(num) {
         if (typeof num !== "number" || num < 1 || num > 100 || isNaN(num)) {
             return "Invalid guess.";
-        }  else if (this.pastGuesses.slice(0, this.pastGuesses.length - 1).indexOf(num) > -1) {
+        }  else if (this.pastGuesses.slice(0, this.pastGuesses.length).indexOf(num) > -1) {
             return "You've already guessed that number.";
         } else {
-            this.pastGuesses.push(num);
+            this.pastGuesses.push(num); 
             $('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
             if (num === this.winningNumber) {
                 $('#hint, #submit, #players-input').prop("disabled", true);
